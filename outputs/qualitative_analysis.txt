@@ -1,0 +1,18 @@
+QUALITATIVE COMPARISON OF MODEL A AND MODEL B
+
+Dataset size: 20 examples
+Model A: distilbert-base-uncased-finetuned-sst-2-english
+Model B: textattack/bert-base-uncased-SST-2
+
+Observation:
+Both models produced identical predicted sentiment labels for all 20 evaluation examples.
+
+Number of disagreements: 0
+
+Analysis:
+No disagreement examples were found in the evaluation dataset. Therefore, five disagreement cases cannot be provided without inventing results.
+
+Although both models predicted the same labels, their confidence scores differed. This indicates that the models can have different levels of confidence even when their final predictions agree.
+
+Conclusion:
+Both models achieved 100% accuracy on this 20-example dataset. A larger and more diverse evaluation dataset is required to investigate whether their predictions differ on more challenging examples.

@@ -1,0 +1,22 @@
+[
+    {
+        "model":"A",
+        "hf_model_id":"distilbert-base-uncased-finetuned-sst-2-english",
+        "accuracy":1.0,
+        "precision":1.0,
+        "recall":1.0,
+        "f1_score":1.0,
+        "avg_latency_ms":13.6298179626,
+        "total_inference_s":0.2725963593
+    },
+    {
+        "model":"B",
+        "hf_model_id":"textattack\/bert-base-uncased-SST-2",
+        "accuracy":1.0,
+        "precision":1.0,
+        "recall":1.0,
+        "f1_score":1.0,
+        "avg_latency_ms":21.056497097,
+        "total_inference_s":0.4211299419
+    }
+]

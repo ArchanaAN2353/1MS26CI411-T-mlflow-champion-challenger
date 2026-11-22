@@ -21,8 +21,13 @@ with mlflow.start_run(
 
     # Log project outputs
     mlflow.log_artifact("outputs/metrics_summary.csv")
+    mlflow.log_artifact("outputs/metrics_summary.json")
     mlflow.log_artifact("outputs/decision.json")
     mlflow.log_artifact("outputs/champion_predictions.csv")
+    mlflow.log_artifact("outputs/qualitative_analysis.txt")
+
+    # Log evaluation dataset
+    mlflow.log_artifact("data/eval_inputs.csv")
 
     print("All project artifacts logged successfully!")
 
