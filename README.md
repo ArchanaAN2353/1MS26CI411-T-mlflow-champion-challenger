@@ -15,8 +15,8 @@
 |---|---|
 | **Student Name** | Archana A N |
 | **Student USN** | 1MS26CI411-T |
-| **Section** | K |
-| **College** | Ramaiah Institute of Technology |
+| **Section** | A |
+| **College** | M S Ramaiah Institute of Technology |
 | **Project** | Sentiment Analysis using MLflow |
 | **Task** | Text Classification – Sentiment Analysis |
 
