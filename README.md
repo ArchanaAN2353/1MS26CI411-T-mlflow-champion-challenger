@@ -1,528 +1,410 @@
-\# MLflow Champion–Challenger Model Evaluation
+# MLflow Champion–Challenger Model Evaluation
 
+### Sentiment Analysis using Hugging Face Transformers and MLflow
 
+![Python](https://img.shields.io/badge/Python-3.14-blue)
+![MLflow](https://img.shields.io/badge/MLflow-3.18-orange)
+![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Transformers-yellow)
+![Project](https://img.shields.io/badge/Project-Champion--Challenger-green)
 
-\*\*Student USN:\*\* 1MS26CI411-T
+---
 
-\*\*Student Name:\*\* Archana A N  
+## Student Information
 
-\*\*Project:\*\* Sentiment Analysis using MLflow  
+| Field | Details |
+|---|---|
+| **Student Name** | Archana A N |
+| **Student USN** | 1MS26CI411-T |
+| **Section** | K |
+| **College** | Ramaiah Institute of Technology |
+| **Project** | Sentiment Analysis using MLflow |
+| **Task** | Text Classification – Sentiment Analysis |
 
-\*\*Task:\*\* Text Classification – Sentiment Analysis
+---
 
+## 1. Project Overview
 
+This project implements a **Champion–Challenger model evaluation workflow** using MLflow and Hugging Face Transformers.
 
-\---
-
-
-
-\## 1. Project Overview
-
-
-
-This project implements a Champion–Challenger model evaluation system using MLflow and Hugging Face Transformers.
-
-
-
-Two pre-trained sentiment analysis models are evaluated using the same dataset. Their performance is compared using classification metrics and inference latency.
-
-
+Two pre-trained sentiment analysis models are evaluated using the same labelled dataset. Their performance is compared using classification metrics and inference latency.
 
 The better-performing model is selected as the Champion, while the other model is assigned the Challenger role.
 
-
-
 MLflow is used for experiment tracking, metric logging, model registration, model versioning, alias management and prediction.
 
+The selected Champion model is subsequently loaded through its MLflow alias and used to predict the sentiment of new reviews.
 
+## 2. Project Objectives
 
-\## 2. Objectives
+- Evaluate two pre-trained sentiment analysis models.
+- Compare model performance using identical evaluation data.
+- Measure accuracy, precision, recall and F1-score.
+- Compare average inference latency and total inference time.
+- Track experiments and metrics using MLflow.
+- Register both models under a common registered model name.
+- Assign Champion and Challenger aliases.
+- Load the Champion model using its MLflow alias.
+- Generate predictions on new review inputs.
+- Visualize and log model comparison results.
 
+## 3. Models Used
 
+Two pre-trained Hugging Face models were selected.
 
-\- Evaluate two pre-trained sentiment analysis models.
-
-\- Compare model performance using the same evaluation dataset.
-
-\- Track experiments and metrics using MLflow.
-
-\- Register both models in the MLflow Model Registry.
-
-\- Assign Champion and Challenger aliases.
-
-\- Load the Champion model directly from MLflow.
-
-\- Generate predictions on new, unseen input reviews.
-
-\- Visualize model performance and inference latency.
-
-
-
-\## 3. Models Used
-
-
-
-Two Hugging Face pre-trained models were selected.
-
-
-
-| Role | Model |
-
+| Model | Hugging Face Model ID |
 |---|---|
-
-| Model A | distilbert-base-uncased-finetuned-sst-2-english |
-
-| Model B | textattack/bert-base-uncased-SST-2 |
-
-
+| **Model A** | `distilbert-base-uncased-finetuned-sst-2-english` |
+| **Model B** | `textattack/bert-base-uncased-SST-2` |
 
 Both models perform binary sentiment classification:
 
+- **Positive (1)**
+- **Negative (0)**
 
+Both models were evaluated on the same input samples to ensure a fair comparison.
 
-\- Positive sentiment
+## 4. Dataset Description
 
-\- Negative sentiment
+A custom evaluation dataset containing **20 labelled reviews** was created.
 
+| Sentiment | Number of Reviews |
+|---|---:|
+| Positive | 10 |
+| Negative | 10 |
+| **Total** | **20** |
 
+The evaluation dataset is stored in:
 
-\## 4. Dataset
+`data/eval_inputs.csv`
 
+A separate dataset containing five new reviews is used to test the registered Champion model:
 
+`data/new_data.csv`
 
-A custom sentiment analysis dataset containing 20 labelled reviews was created.
+The new reviews are used for prediction after model registration.
 
+## 5. Evaluation Metrics
 
+The following metrics were used to compare both models.
 
-\- 10 Positive reviews
+| Metric | Description |
+|---|---|
+| Accuracy | Proportion of correctly classified reviews |
+| Precision | Proportion of predicted positive reviews that are actually positive |
+| Recall | Proportion of actual positive reviews correctly identified |
+| F1-score | Harmonic mean of precision and recall |
+| Average Latency | Average inference time per review in milliseconds |
+| Total Inference Time | Total time taken to process the evaluation dataset |
 
-\- 10 Negative reviews
+These metrics help evaluate both classification performance and inference efficiency.
 
+## 6. Champion Selection Strategy
 
+A predefined decision rule was used to select the Champion model.
 
-The dataset is stored in:
+1. Select the model with the higher F1-score.
+2. If the F1-score difference is within 0.01, select the model with lower average inference latency.
 
+This approach considers both prediction quality and inference speed.
 
+## 7. Experimental Results
 
-`data/eval\_inputs.csv`
-
-
-
-A separate dataset containing five new reviews is used to test the registered Champion model.
-
-
-
-`data/new\_data.csv`
-
-
-
-\## 5. Evaluation Metrics
-
-
-
-The following metrics were used to compare the two models:
-
-
-
-\- \*\*Accuracy:\*\* Measures the overall proportion of correct predictions.
-
-\- \*\*Precision:\*\* Measures how many predicted positive reviews were actually positive.
-
-\- \*\*Recall:\*\* Measures how many actual positive reviews were correctly identified.
-
-\- \*\*F1-score:\*\* Combines precision and recall.
-
-\- \*\*Average Latency:\*\* Measures average inference time per review in milliseconds.
-
-\- \*\*Total Inference Time:\*\* Measures the total time taken to process the evaluation dataset.
-
-
-
-\## 6. Champion Selection Strategy
-
-
-
-The decision rule was defined before final model selection.
-
-
-
-1\. The model with the higher F1-score is selected.
-
-2\. If the F1-score difference is within 0.01, the model with lower average inference latency is selected.
-
-
-
-This strategy considers both prediction quality and inference speed.
-
-
-
-\## 7. Experimental Results
-
-
-
-Both models achieved the same classification performance on the evaluation dataset.
-
-
+Both models achieved identical classification metrics on the evaluation dataset.
 
 | Metric | Model A | Model B |
-
 |---|---:|---:|
-
 | Accuracy | 1.00 | 1.00 |
-
 | Precision | 1.00 | 1.00 |
-
 | Recall | 1.00 | 1.00 |
-
 | F1-score | 1.00 | 1.00 |
-
 | Average Latency | 13.63 ms | 21.06 ms |
-
 | Total Inference Time | 0.273 s | 0.421 s |
 
+### Final Model Selection
 
+| Role | Selected Model |
+|---|---|
+| **Champion** | Model A – DistilBERT |
+| **Challenger** | Model B – BERT |
 
-\### Final Decision
+**Reason:** Both models achieved the same F1-score. Since the difference was within 0.01, Model A was selected because it had lower average inference latency.
 
+### 7.1 Model Comparison and Trade-off Analysis
 
+Both models achieved identical classification results on the 20 evaluation samples, with 100% accuracy, precision, recall and F1-score. Therefore, the Challenger model did not demonstrate an improvement in prediction quality over the Champion model.
 
-\*\*Champion:\*\* Model A – DistilBERT
+However, a difference was observed in inference speed. Model A recorded an average latency of 13.63 ms, whereas Model B recorded 21.06 ms. This means Model B was approximately 54.5% slower than Model A on the same evaluation dataset. Since both models achieved the same F1-score, Model A was selected as the Champion according to the predefined decision rule.
 
+The results also showed that both models predicted the same sentiment labels for all 20 samples. Although their confidence scores differed, there were no prediction disagreements. Consequently, five disagreement examples could not be identified from this dataset.
 
+The evaluation dataset contains only 20 reviews, with 10 positive and 10 negative samples. This small sample size limits the reliability and generalizability of the results. A larger and more diverse dataset would be needed for a stronger comparison.
 
-\*\*Challenger:\*\* Model B – BERT
+Overall, Model A provides the better latency-performance trade-off in this experiment while maintaining the same classification metrics as Model B.
 
+### 7.2 Qualitative Comparison
 
+Both models produced identical predicted sentiment labels for all 20 evaluation examples.
 
-Both models achieved an F1-score of 1.00. Since their F1-score difference was within 0.01, Model A was selected as the Champion because it had lower average inference latency.
+- Total examples compared: **20**
+- Prediction disagreements: **0**
+- Both models achieved: **100% accuracy**
 
+No disagreement examples were found. Therefore, five disagreement cases could not be provided without inventing results.
 
+The confidence scores differed between models even though their final predicted labels were identical.
 
-\*Note: These results are based on the small custom evaluation dataset and should not be interpreted as a guarantee of performance on larger real-world datasets.\*
+The detailed qualitative comparison is available in:
 
+`outputs/qualitative_analysis.txt`
 
+**Note:** The evaluation results are based on a small custom dataset and do not guarantee equivalent performance on larger real-world datasets.
 
-\## 8. MLflow Experiment Tracking
+## 8. MLflow Experiment Tracking
 
+MLflow was used to track the model evaluation experiments.
 
-
-MLflow was used to track the experiments.
-
-
-
-Experiment name:
-
-
+**Experiment Name:**
 
 `Sentiment Analysis Champion Challenger`
 
+The following information was recorded:
 
+- Model identifiers and evaluation parameters.
+- Accuracy, precision, recall and F1-score.
+- Average inference latency.
+- Total inference time.
+- Student USN tag.
+- Model prediction files.
+- Comparison graphs.
+- Final Champion selection decision.
+- Evaluation dataset and summary artifacts.
 
-The following information was logged:
+The final project artifacts were logged under the run:
 
+`final_project_artifacts`
 
-
-\- Model identifiers and evaluation parameters
-
-\- Accuracy, precision, recall and F1-score
-
-\- Average inference latency
-
-\- Total inference time
-
-\- Student USN tag
-
-\- Prediction CSV files
-
-\- Model comparison graphs
-
-\- Final Champion decision
-
-
-
-\## 9. Model Registry
-
-
+## 9. MLflow Model Registry
 
 Both models were registered under the same registered model name:
 
-
-
 `SentimentAnalysisClassifier`
 
-
-
 | Model | Version | Alias |
-
 |---|---:|---|
+| Model A – DistilBERT | 1 | `champion` |
+| Model B – BERT | 2 | `challenger` |
 
-| Model A | 1 | champion |
+The Champion model is loaded using the following MLflow model URI:
 
-| Model B | 2 | challenger |
+```python
+models:/SentimentAnalysisClassifier@champion
+```
 
+Using aliases allows the selected model to be accessed through MLflow without hardcoding its version number in the prediction workflow.
 
+## 10. Champion Model Predictions
 
-The Champion model is loaded using its MLflow alias:
+After model registration, the Champion model was loaded directly from the MLflow Model Registry.
 
+Five new review inputs were used to generate predictions.
 
+| Input Review | Predicted Sentiment |
+|---|---|
+| Amazing product | Positive |
+| Poor quality | Negative |
+| Excellent service | Positive |
+| Unhappy purchase | Negative |
+| Works perfectly | Positive |
 
-`models:/SentimentAnalysisClassifier@champion`
+The prediction output includes:
 
-
-
-This allows the prediction script to load the selected model through MLflow rather than directly loading the Hugging Face model.
-
-
-
-\## 10. Champion Model Predictions
-
-
-
-The registered Champion model was loaded from MLflow and tested using five new reviews.
-
-
-
-The output contains:
-
-
-
-\- Input review text
-
-\- Predicted sentiment
-
-\- Prediction confidence score
-
-
+- Input review text.
+- Predicted sentiment.
+- Prediction confidence score.
 
 The predictions are saved in:
 
+`outputs/champion_predictions.csv`
 
+## 11. Visualizations
 
-`outputs/champion\_predictions.csv`
+Two graphs were generated to compare the performance of both models.
 
+### Figure 1: Performance Comparison
 
+File: `outputs/performance_comparison.png`
 
-\## 11. Visualizations
+This graph compares:
 
+- Accuracy
+- Precision
+- Recall
+- F1-score
 
+Both models achieved identical classification scores.
 
-Two graphs were generated to compare the models.
+### Figure 2: Inference Latency Comparison
 
+File: `outputs/latency_comparison.png`
 
+This graph compares the average inference latency of both models.
 
-\*\*Figure 1: Performance Comparison\*\*
-
-
-
-`outputs/performance\_comparison.png`
-
-
-
-Compares accuracy, precision, recall and F1-score.
-
-
-
-\*\*Figure 2: Inference Latency Comparison\*\*
-
-
-
-`outputs/latency\_comparison.png`
-
-
-
-Compares average inference latency of both models.
-
-
+Model A demonstrated lower average inference latency than Model B.
 
 Both graphs were also logged as MLflow artifacts.
 
+## 12. MLflow Artifacts
 
+The following project artifacts were logged in MLflow:
 
-\## 12. Project Structure
+| Artifact | Description |
+|---|---|
+| `performance_comparison.png` | Model performance graph |
+| `latency_comparison.png` | Inference latency graph |
+| `metrics_summary.csv` | Evaluation metrics in CSV format |
+| `metrics_summary.json` | Evaluation metrics in JSON format |
+| `decision.json` | Final Champion selection |
+| `champion_predictions.csv` | Predictions from the Champion model |
+| `qualitative_analysis.txt` | Qualitative comparison of both models |
+| `eval_inputs.csv` | Evaluation dataset |
 
-
+## 13. Project Structure
 
 ```text
-
-MLflow\_Champion\_Challenger/
-
+MLflow_Champion_Challenger/
 │
-
 ├── data/
-
-│   ├── eval\_inputs.csv
-
-│   └── new\_data.csv
-
+│   ├── eval_inputs.csv
+│   └── new_data.csv
 │
-
 ├── outputs/
-
-│   ├── predictions\_model\_A.csv
-
-│   ├── predictions\_model\_B.csv
-
-│   ├── metrics\_summary.csv
-
+│   ├── predictions_model_A.csv
+│   ├── predictions_model_B.csv
+│   ├── metrics_summary.csv
+│   ├── metrics_summary.json
 │   ├── decision.json
-
-│   ├── champion\_predictions.csv
-
-│   ├── performance\_comparison.png
-
-│   └── latency\_comparison.png
-
+│   ├── champion_predictions.csv
+│   ├── qualitative_analysis.txt
+│   ├── performance_comparison.png
+│   └── latency_comparison.png
 │
-
+├── screenshots/
+│
 ├── evaluate.py
-
-├── register\_champion.py
-
-├── predict\_from\_mlflow.py
-
-├── generate\_plots.py
-
-├── log\_artifacts.py
-
+├── register_champion.py
+├── predict_from_mlflow.py
+├── generate_plots.py
+├── log_artifacts.py
+│
 ├── requirements.txt
-
+├── .gitignore
 └── README.md
-
 ```
 
+## 14. Technologies Used
 
+| Technology | Purpose |
+|---|---|
+| Python | Programming language |
+| MLflow | Experiment tracking and model registry |
+| Hugging Face Transformers | Pre-trained sentiment analysis models |
+| PyTorch | Model execution |
+| Pandas | Dataset processing |
+| Scikit-learn | Evaluation metrics |
+| Matplotlib | Data visualization |
+| Git and GitHub | Version control and project hosting |
 
-\## 13. Technologies Used
+## 15. How to Run the Project
 
-
-
-\- Python
-
-\- MLflow
-
-\- Hugging Face Transformers
-
-\- PyTorch
-
-\- Pandas
-
-\- Scikit-learn
-
-\- Matplotlib
-
-
-
-\## 14. How to Run the Project
-
-
-
-\### Step 1: Install dependencies
-
-
+### Step 1: Clone the repository
 
 ```bash
+git clone https://github.com/ArchanaAN2353/1MS26CI411-T-mlflow-champion-challenger.git
+```
 
+### Step 2: Navigate to the project directory
+
+```bash
+cd 1MS26CI411-T-mlflow-champion-challenger
+```
+
+### Step 3: Create and activate a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Windows PowerShell:
+
+```powershell
+.\.venv\Scripts\Activate.ps1
+```
+
+### Step 4: Install dependencies
+
+```bash
 pip install -r requirements.txt
-
 ```
 
-
-
-\### Step 2: Start the MLflow tracking server
-
-
+### Step 5: Start the MLflow tracking server
 
 ```bash
-
-mlflow server --host 127.0.0.1 --port 5000
-
+python -m mlflow server --host 127.0.0.1 --port 5000
 ```
-
-
-
-\### Step 3: Evaluate both models
-
-
-
-```bash
-
-python evaluate.py
-
-```
-
-
-
-\### Step 4: Register both models
-
-
-
-```bash
-
-python register\_champion.py
-
-```
-
-
-
-\### Step 5: Generate Champion predictions
-
-
-
-```bash
-
-python predict\_from\_mlflow.py
-
-```
-
-
-
-\### Step 6: Generate comparison graphs
-
-
-
-```bash
-
-python generate\_plots.py
-
-```
-
-
-
-\### Step 7: Log artifacts into MLflow
-
-
-
-```bash
-
-python log\_artifacts.py
-
-```
-
-
 
 Open the MLflow dashboard:
 
+`http://127.0.0.1:5000`
 
+### Step 6: Evaluate both models
 
-http://127.0.0.1:5000
+```bash
+python evaluate.py
+```
 
+### Step 7: Register both models
 
+```bash
+python register_champion.py
+```
 
-\## 15. Conclusion
+### Step 8: Generate Champion predictions
 
+```bash
+python predict_from_mlflow.py
+```
 
+### Step 9: Generate comparison graphs
 
-This project demonstrates how MLflow can be used to implement a Champion–Challenger workflow for machine learning model evaluation.
+```bash
+python generate_plots.py
+```
 
+### Step 10: Log artifacts into MLflow
 
+```bash
+python log_artifacts.py
+```
 
-Two pre-trained sentiment analysis models were evaluated using identical input data. Based on the predefined decision rule, DistilBERT was selected as the Champion due to its lower inference latency while maintaining the same F1-score.
+**Note:** The evaluation and registration steps require access to the Hugging Face model downloads. The MLflow tracking server should remain running while executing the MLflow-related scripts.
 
+## 16. Conclusion
 
+This project demonstrates the implementation of a Champion–Challenger workflow for sentiment analysis using MLflow and Hugging Face Transformers.
 
-Both models were registered in MLflow with their respective aliases. The Champion model was successfully loaded from the Model Registry and used to generate predictions on new reviews.
+Two pre-trained models were evaluated using the same dataset and compared using classification metrics and inference latency.
 
+Both models achieved identical classification performance on the evaluation dataset. Based on the predefined decision rule, DistilBERT was selected as the Champion because it demonstrated lower average inference latency.
 
+Both models were successfully registered in MLflow with their respective aliases. The Champion model was then loaded from the Model Registry and used to generate predictions on five new reviews.
 
-The project provides practical experience with experiment tracking, model evaluation, model registration, versioning and model deployment workflows.
+The project provided practical experience in model evaluation, experiment tracking, artifact logging, model registration, model versioning, alias management and prediction workflows.
+
+---
+
+## GitHub Repository
+
+**Project Repository:**
+
+https://github.com/ArchanaAN2353/1MS26CI411-T-mlflow-champion-challenger
 
