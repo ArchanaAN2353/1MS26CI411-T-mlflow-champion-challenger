@@ -1,0 +1,21 @@
+text,actual_label,predicted_label,confidence,correct
+I absolutely love this product. It works perfectly.,1,1,0.9998767375946045,True
+This is the best experience I have ever had.,1,1,0.999847412109375,True
+I am very happy with the service.,1,1,0.9998692274093628,True
+Excellent quality and fast delivery.,1,1,0.999872088432312,True
+The product exceeded my expectations.,1,1,0.9983416795730591,True
+Fantastic quality. I would recommend it.,1,1,0.9998675584793091,True
+Very useful and easy to operate.,1,1,0.9998351335525513,True
+The customer support was excellent.,1,1,0.9998371601104736,True
+I am completely satisfied with my purchase.,1,1,0.9998364448547363,True
+Wonderful experience. I will buy again.,1,1,0.9998829364776611,True
+I hate this product. It is completely useless.,0,0,0.9998117089271545,True
+This is the worst experience I have ever had.,0,0,0.9997627139091492,True
+I am very disappointed with the service.,0,0,0.9997695088386536,True
+Poor quality and extremely slow delivery.,0,0,0.9998134970664978,True
+The product stopped working after one day.,0,0,0.9996970891952515,True
+Terrible quality. I would not recommend it.,0,0,0.9946857690811157,True
+Very difficult to use and understand.,0,0,0.9996720552444458,True
+The customer support was rude and unhelpful.,0,0,0.9995386600494385,True
+I am completely dissatisfied with my purchase.,0,0,0.9996669292449951,True
+Absolutely terrible experience.,0,0,0.9988831877708435,True

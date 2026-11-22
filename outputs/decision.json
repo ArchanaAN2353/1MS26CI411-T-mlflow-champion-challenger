@@ -1,0 +1,5 @@
+{
+    "champion": "A",
+    "challenger": "B",
+    "decision_rule": "Higher F1; if within 0.01, lower latency wins."
+}

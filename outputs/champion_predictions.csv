@@ -1,0 +1,6 @@
+text,sentiment,confidence
+This product is amazing. I really love it.,POSITIVE,0.9998859167098999
+The quality is very poor and disappointing.,NEGATIVE,0.9997689127922058
+Excellent service and fast delivery.,POSITIVE,0.9998602867126465
+I am unhappy with this purchase.,NEGATIVE,0.9996912479400635
+The product works perfectly.,POSITIVE,0.999874472618103
